@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { CheckOutItem } from '@components/CheckOutItem';
-
+import { Link } from 'react-router-dom';
 const InformationContainer = styled.div`
     grid-template-columns: 3fr 1fr;
     grid-gap: 2rem;
@@ -120,8 +120,12 @@ const Information = () => {
                     </Form>
                 </FormContainer>
                 <ButtonsContainer>
-                    <BackButton>Back</BackButton>
-                    <PayButton>Pay</PayButton>
+                    <Link to="/checkout">
+                        <BackButton>Back</BackButton>
+                    </Link>
+                    <Link to="/checkout/payment">
+                        <PayButton>Pay</PayButton>
+                    </Link>
                 </ButtonsContainer>
             </InformationContent>
             <InformationSideBar>
