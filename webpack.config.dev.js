@@ -15,7 +15,13 @@ module.exports = {
   mode: 'development',
   resolve: {
     extensions: ['.js', '.jsx', '.json', '.scss'],
-    alias: {},
+    alias: {
+      '@containers': path.join(__dirname, './src/containers'),
+      '@components': path.join(__dirname, './src/components'),
+      '@routes': path.join(__dirname, './src/routes'),
+      '@styles': path.join(__dirname, './src/styles'),
+
+    },
   },
   module: {
     rules: [
