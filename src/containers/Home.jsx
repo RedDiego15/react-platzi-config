@@ -1,8 +1,11 @@
 import React from 'react'
-
+import InitialState from '../InitialState'
+import {Products} from '@components/Products'
 const Home = () => {
   return (
-    <h1>Home</h1>
+    <Products products = {InitialState.products}>
+
+    </Products>
   )
 }
 
