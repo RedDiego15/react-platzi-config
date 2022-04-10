@@ -1,12 +1,8 @@
-import React from 'react'
-import InitialState from '../InitialState'
-import {Products} from '@components/Products'
+import React from 'react';
+import InitialState from '../InitialState';
+import { Products } from '@components/Products';
 const Home = () => {
-  return (
-    <Products products = {InitialState.products}>
+    return <Products products={InitialState.products}></Products>;
+};
 
-    </Products>
-  )
-}
-
-export {Home}
+export { Home };
