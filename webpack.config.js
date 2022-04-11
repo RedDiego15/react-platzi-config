@@ -5,6 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
   entry: './src/index.js',
@@ -15,21 +16,13 @@ module.exports = {
   },
   mode: 'production',
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.mjs','.js', '.jsx','.json'],
     alias: {
-      '@styles': path.resolve(__dirname, './src/styles'),
-      '@logos': path.resolve(__dirname, './assets/logos'),
-      '@icons': path.resolve(__dirname, './assets/icons'),
-      '@components': path.resolve(__dirname, './src/components'),
-      '@containers': path.resolve(__dirname, './src/Containers'),
-      '@responsiveComponents': path.resolve(
-        __dirname,
-        './src/ResponsiveComponents'
-      ),
-      '@pages': path.resolve(__dirname, './src/Pages'),
-      '@hooks': path.resolve(__dirname, './src/Hooks'),
-      '@context': path.resolve(__dirname, './src/Context'),
-    },
+      '@containers': path.join(__dirname, './src/containers'),
+      '@components': path.join(__dirname, './src/components'),
+      '@routes': path.join(__dirname, './src/routes'),
+      '@styles': path.join(__dirname, './src/styles'),
+    }
   },
   module: {
     rules: [
@@ -69,6 +62,7 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: 'assets/[name].[contenthash].css',
     }),
+    new BundleAnalyzerPlugin(),
   ],
   optimization: {
     minimize: true,

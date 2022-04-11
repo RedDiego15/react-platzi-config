@@ -7,18 +7,24 @@ const CheckOutItemContainer = styled.div`
     justify-content: space-between;
     align-items: center;
     margin: 10px 0 0 0;
+    border-bottom: 1px solid
+        ${(props) => props.theme.CheckOutItem__element_border_bottom_color};
 `;
 const CheckOutElement = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    border-bottom: 1px solid
-        ${(props) => props.theme.CheckOutItem__element_border_bottom_color};
 
     h4 {
         margin: 0;
     }
+`;
+const CheckOutElementContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0.5rem;
+    gap: 0.5rem;
 `;
 const Button = styled.button`
     background-color: transparent;
@@ -30,13 +36,20 @@ const stylesDeleteIcon = {
     width: '20px',
     height: '20px',
 };
-const CheckOutItem = () => {
+const CheckOutItem = ({ title, price, quantity }) => {
     return (
         <CheckOutItemContainer>
-            <CheckOutElement>
-                <h4>Item Name</h4>
-                <span>$10</span>
-            </CheckOutElement>
+            <CheckOutElementContainer>
+                <CheckOutElement>
+                    <h4>{title}</h4>
+                    <span>$ {price}</span>
+                </CheckOutElement>
+                <CheckOutElement>
+                    <h4>Quantity: </h4>
+                    <span>{quantity}</span>
+                </CheckOutElement>
+            </CheckOutElementContainer>
+
             <Button type="button">
                 <MdDeleteOutline style={stylesDeleteIcon} />
             </Button>

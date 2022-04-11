@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { CheckOutItem } from '@components/CheckOutItem';
 import { Link } from 'react-router-dom';
+import { AppContext } from '@context/AppContext';
 
 const CheckOutContainer = styled.div`
     grid-template-columns: 3fr 1fr;
@@ -38,11 +39,22 @@ const ButtonSideBar = styled.button`
 `;
 
 const CheckOut = () => {
+    const {
+        state: { cart },
+    } = useContext(AppContext);
+
     return (
         <CheckOutContainer>
             <CheckOutContent>
                 <Title>Order List</Title>
-                <CheckOutItem />
+                {cart.map((product) => (
+                    <CheckOutItem
+                        quantity={product.quantity}
+                        title={product.title}
+                        price={product.price}
+                        key={`Product-${product.id}`}
+                    />
+                ))}
             </CheckOutContent>
             <SideBar>
                 <h3>Total Price: $10</h3>

@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { CheckOutItem } from '@components/CheckOutItem';
 import { Link } from 'react-router-dom';
+import { AppContext } from '@context/AppContext';
+import { useForm } from 'react-hook-form';
+
 const InformationContainer = styled.div`
     grid-template-columns: 3fr 1fr;
     grid-gap: 2rem;
@@ -40,7 +43,7 @@ const ButtonsContainer = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 2rem;
+    margin-top: 1rem;
 `;
 const Button = styled.button`
     box-shadow: inset 0px 1px 0px 0px #bee2f9;
@@ -80,8 +83,21 @@ const InformationSideBar = styled.div`
 `;
 
 const Information = () => {
+    const {
+        state: { cart },
+    } = useContext(AppContext);
+
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm();
+
+    const onSubmit = (data) => {
+        alert(JSON.stringify(data));
+    };
     return (
-        <InformationContainer>
+        <InformationContainer onSubmit={handleSubmit(onSubmit)}>
             <InformationContent>
                 <InformationHead>
                     <h2>Contact information</h2>
@@ -89,48 +105,94 @@ const Information = () => {
                 <FormContainer>
                     <Form action="">
                         <Input
+                            {...register('name', { required: true })}
                             type="text"
                             placeholder="Complete Name"
                             name="name"
                         />
-                        <Input type="text" placeholder="Email" name="email" />
+                        {errors.name && <span>This field is required</span>}
                         <Input
+                            {...register('Email', { required: true })}
+                            type="text"
+                            placeholder="Email"
+                            name="email"
+                        />
+                        {errors.Email && <span>This field is required</span>}
+                        <Input
+                            {...register('direction', { required: true })}
                             type="text"
                             placeholder="Direction"
                             name="direction"
                         />
-                        <Input type="text" placeholder="apto" name="apto" />
-                        <Input type="text" placeholder="City" name="city" />
+                        {errors.direction && (
+                            <span>This field is required</span>
+                        )}
                         <Input
+                            {...register('apto')}
+                            type="text"
+                            rue
+                            placeholder="apto"
+                            name="apto"
+                        />
+                        {errors.apto && <span>This field is required</span>}
+                        <Input
+                            {...register('City', { required: true })}
+                            type="text"
+                            placeholder="City"
+                            name="city"
+                        />
+                        {errors.City && <span>This field is required</span>}
+                        <Input
+                            {...register('country', { required: true })}
                             type="text"
                             placeholder="Country"
                             name="country"
                         />
-                        <Input type="text" placeholder="State" name="state" />
+                        {errors.country && <span>This field is required</span>}
                         <Input
+                            {...register('State', { required: true })}
+                            type="text"
+                            placeholder="State"
+                            name="state"
+                        />
+                        {errors.State && <span>This field is required</span>}
+                        <Input
+                            {...register('postal_code', { required: true })}
                             type="text"
                             placeholder="Postal Code"
                             name="cp"
                         />
+                        {errors.postal_code && (
+                            <span>This field is required</span>
+                        )}
                         <Input
+                            {...register('phone', { required: true })}
                             type="text"
                             placeholder="Cellphone Number"
                             name="phone"
                         />
+                        {errors.phone && <span>This field is required</span>}
+                        <ButtonsContainer>
+                            <Link to="/checkout">
+                                <BackButton type="button">Back</BackButton>
+                            </Link>
+                            {/* <Link to="/checkout/payment"> */}
+                            <PayButton type="submit">Pay</PayButton>
+                            {/* </Link> */}
+                        </ButtonsContainer>
                     </Form>
                 </FormContainer>
-                <ButtonsContainer>
-                    <Link to="/checkout">
-                        <BackButton>Back</BackButton>
-                    </Link>
-                    <Link to="/checkout/payment">
-                        <PayButton>Pay</PayButton>
-                    </Link>
-                </ButtonsContainer>
             </InformationContent>
             <InformationSideBar>
                 <h3>Order:</h3>
-                <CheckOutItem />
+                {cart.map((product) => (
+                    <CheckOutItem
+                        quantity={product.quantity}
+                        title={product.title}
+                        price={product.price}
+                        key={`Product-checkOut${product.id}`}
+                    />
+                ))}
             </InformationSideBar>
         </InformationContainer>
     );

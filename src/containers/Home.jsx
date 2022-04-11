@@ -1,8 +1,7 @@
 import React from 'react';
-import InitialState from '../InitialState';
 import { Products } from '@components/Products';
 const Home = () => {
-    return <Products products={InitialState.products}></Products>;
+    return <Products></Products>;
 };
 
 export { Home };
