@@ -25,8 +25,14 @@ const HeaderCheckout = styled.div`
 `;
 const NumberOfItems = styled.span`
     position: absolute;
-    bottom: 7px;
-    left: 11px;
+    bottom: 3px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+`;
+const StyledLink = styled(Link)`
+    position: relative;
+    display: flex;
 `;
 const iconStyle = {
     width: '34px',
@@ -38,18 +44,20 @@ const Header = () => {
         state: { cart },
     } = useContext(AppContext);
     const totalItems = cart.reduce((prev, actual) => prev + actual.quantity, 0);
+
     return (
         <HeaderContainer>
             <Link to="home">
                 <Title>Platzi config</Title>
             </Link>
             <HeaderCheckout>
-                <Link to="/checkout">
+                <StyledLink to="/checkout">
                     <HiOutlineShoppingBag style={iconStyle} />
-                    {cart.length > 0 && (
+                    {totalItems < 10 && totalItems > 0 && (
                         <NumberOfItems>{totalItems}</NumberOfItems>
                     )}
-                </Link>
+                    {totalItems > 9 && <NumberOfItems>9+</NumberOfItems>}
+                </StyledLink>
             </HeaderCheckout>
         </HeaderContainer>
     );
