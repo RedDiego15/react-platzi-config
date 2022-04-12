@@ -32,11 +32,19 @@ const useInitialState = () => {
             0
         );
     };
+    const addBuyer = (payload) => {
+        set('buyer', payload);
+    };
+    const addNewOrder = (payload) => {
+        set('order', payload);
+    };
 
     return {
         state,
         addToCart,
         getTotalOrderPrice,
+        addBuyer,
+        addNewOrder,
     };
 };
 

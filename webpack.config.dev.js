@@ -4,6 +4,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const BundleAnalyzerPlugin =
     require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const Dotenv = require('dotenv-webpack');
+
 module.exports = {
     entry: './src/index.js',
     output: {
@@ -71,6 +73,7 @@ module.exports = {
         }),
 
         new BundleAnalyzerPlugin(),
+        new Dotenv(),
     ],
     devServer: {
         historyApiFallback: true,

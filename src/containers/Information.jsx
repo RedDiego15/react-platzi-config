@@ -85,6 +85,7 @@ const InformationSideBar = styled.div`
 const Information = () => {
     const {
         state: { cart },
+        addBuyer,
     } = useContext(AppContext);
 
     const {
@@ -97,6 +98,7 @@ const Information = () => {
 
     const onSubmit = (data) => {
         alert(JSON.stringify(data));
+        addBuyer(data);
         navigate('/checkout/payment');
     };
     return (
