@@ -41,6 +41,7 @@ const ButtonSideBar = styled.button`
 const CheckOut = () => {
     const {
         state: { cart },
+        getTotalOrderPrice,
     } = useContext(AppContext);
 
     return (
@@ -57,7 +58,7 @@ const CheckOut = () => {
                 ))}
             </CheckOutContent>
             <SideBar>
-                <h3>Total Price: $10</h3>
+                <h3>Total Price: ${getTotalOrderPrice()}</h3>
                 <Link to="/checkout/information">
                     <ButtonSideBar>Continue Order</ButtonSideBar>
                 </Link>

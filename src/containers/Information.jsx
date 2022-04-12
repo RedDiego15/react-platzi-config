@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { CheckOutItem } from '@components/CheckOutItem';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AppContext } from '@context/AppContext';
 import { useForm } from 'react-hook-form';
 
@@ -93,8 +93,11 @@ const Information = () => {
         formState: { errors },
     } = useForm();
 
+    const navigate = useNavigate();
+
     const onSubmit = (data) => {
         alert(JSON.stringify(data));
+        navigate('/checkout/payment');
     };
     return (
         <InformationContainer onSubmit={handleSubmit(onSubmit)}>
@@ -112,12 +115,12 @@ const Information = () => {
                         />
                         {errors.name && <span>This field is required</span>}
                         <Input
-                            {...register('Email', { required: true })}
+                            {...register('email', { required: true })}
                             type="text"
                             placeholder="Email"
                             name="email"
                         />
-                        {errors.Email && <span>This field is required</span>}
+                        {errors.email && <span>This field is required</span>}
                         <Input
                             {...register('direction', { required: true })}
                             type="text"
@@ -134,14 +137,14 @@ const Information = () => {
                             placeholder="apto"
                             name="apto"
                         />
-                        {errors.apto && <span>This field is required</span>}
+
                         <Input
-                            {...register('City', { required: true })}
+                            {...register('city', { required: true })}
                             type="text"
                             placeholder="City"
                             name="city"
                         />
-                        {errors.City && <span>This field is required</span>}
+                        {errors.city && <span>This field is required</span>}
                         <Input
                             {...register('country', { required: true })}
                             type="text"
@@ -150,17 +153,17 @@ const Information = () => {
                         />
                         {errors.country && <span>This field is required</span>}
                         <Input
-                            {...register('State', { required: true })}
+                            {...register('state', { required: true })}
                             type="text"
                             placeholder="State"
                             name="state"
                         />
-                        {errors.State && <span>This field is required</span>}
+                        {errors.state && <span>This field is required</span>}
                         <Input
                             {...register('postal_code', { required: true })}
                             type="text"
                             placeholder="Postal Code"
-                            name="cp"
+                            name="postal_code"
                         />
                         {errors.postal_code && (
                             <span>This field is required</span>
@@ -176,9 +179,8 @@ const Information = () => {
                             <Link to="/checkout">
                                 <BackButton type="button">Back</BackButton>
                             </Link>
-                            {/* <Link to="/checkout/payment"> */}
+
                             <PayButton type="submit">Pay</PayButton>
-                            {/* </Link> */}
                         </ButtonsContainer>
                     </Form>
                 </FormContainer>

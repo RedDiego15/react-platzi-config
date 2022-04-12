@@ -26,10 +26,17 @@ const useInitialState = () => {
         }
         setAll({ ...state });
     };
+    const getTotalOrderPrice = () => {
+        return state.cart.reduce(
+            (prev, actual) => prev + actual.quantity * actual.price,
+            0
+        );
+    };
 
     return {
         state,
         addToCart,
+        getTotalOrderPrice,
     };
 };
 
