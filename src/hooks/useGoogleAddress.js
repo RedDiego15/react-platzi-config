@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import axios from 'Axios';
+import axios from 'axios';
 
 const APIKEY_GOOGLE = process.env.APIKEY_GOOGLE;
 const useGoogleAddress = (address) => {
