@@ -97,7 +97,6 @@ const Information = () => {
     const navigate = useNavigate();
 
     const onSubmit = (data) => {
-        alert(JSON.stringify(data));
         addBuyer(data);
         navigate('/checkout/payment');
     };

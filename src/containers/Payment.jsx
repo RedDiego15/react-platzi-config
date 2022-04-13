@@ -26,7 +26,6 @@ const Payment = () => {
         intent: 'capture',
         currency: 'USD',
     };
-    debugger;
     const {
         state: { cart },
         buyer,
@@ -45,7 +44,7 @@ const Payment = () => {
             addNewOrder(newOrder);
             navigate('/checkout/success');
         } else {
-            console.log('no se completo');
+            console.log('Uncomplete payment request');
         }
     };
 
