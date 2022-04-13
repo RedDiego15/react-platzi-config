@@ -16,8 +16,8 @@ jobs:
       - name: Build
         run: npm run build
           env:
-          APIKEY_GOOGLE: ${{secrets.APIKEY_GOOGLE}}
-          APIKEY_PAYPAL: ${{secrets.APIKEY_PAYPAL}}
+            APIKEY_GOOGLE: ${{secrets.APIKEY_GOOGLE}}
+            APIKEY_PAYPAL: ${{secrets.APIKEY_PAYPAL}}
       - name: Archive Production Artifact
         uses: actions/upload-artifact@main
         with:
