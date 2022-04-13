@@ -18,7 +18,7 @@ function App() {
             <BrowserRouter>
                 <Layout>
                     <Routes>
-                        <Route exact path="/home" element={<Home />} />
+                        <Route exact path="/" element={<Home />} />
                         <Route exact path="/checkout" element={<CheckOut />} />
                         <Route
                             exact
