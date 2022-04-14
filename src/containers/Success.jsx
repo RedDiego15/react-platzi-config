@@ -13,15 +13,16 @@ const SuccesMapContainer = styled.div`
 const Success = () => {
     const {
         state: {
-            buyer: { direction },
+            buyer: { name, direction, country },
         },
     } = useContext(AppContext);
-    debugger;
     return (
         <SuccessContainer>
             <SuccesContent>
-                <h2>{`, Thanks for your parachuse`}</h2>
-                <span>your items will arrive in 3 days to :</span>
+                <h2>{`${name}, Thanks for your parachuse`}</h2>
+                <span>
+                    your items will arrive in 3 days to :{country}: {direction}
+                </span>
                 <SuccesMapContainer>
                     <Map direction={direction} />
                 </SuccesMapContainer>

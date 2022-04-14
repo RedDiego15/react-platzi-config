@@ -17,6 +17,16 @@ const buttonStyles = {
     layout: 'vertical',
     shape: 'rect',
 };
+const ButtonPass = styled.button`
+    background-color: white;
+    border: 2px solid grey;
+    outline: none;
+    padding: 10px;
+    cursor: pointer;
+`;
+const ContainerPaypalButtons = styled.div`
+    margin-top: 0.5rem;
+`;
 
 const CLIENT_ID_PAYPAL = process.env.APIKEY_PAYPAL;
 
@@ -47,6 +57,9 @@ const Payment = () => {
             console.log('Uncomplete payment request');
         }
     };
+    const handleWithoutPay = () => {
+        navigate('/checkout/success');
+    };
 
     return (
         <PaymentContainer>
@@ -60,16 +73,21 @@ const Payment = () => {
                         key={`Product-Payment-${product.id}`}
                     />
                 ))}
+                <ContainerPaypalButtons>
+                    <PayPalButton
+                        paypalOptions={paypalOptions}
+                        buttonStyles={buttonStyles}
+                        amount={getTotalOrderPrice()}
+                        onPaymentStart={() => console.log('Start payment')}
+                        onPaymentSuccess={(data) => handlePaymentSuccess(data)}
+                        onPaymentError={(error) => console.log(error)}
+                        onPaymentCancel={(data) => console.log(data)}
+                    />
+                </ContainerPaypalButtons>
 
-                <PayPalButton
-                    paypalOptions={paypalOptions}
-                    buttonStyles={buttonStyles}
-                    amount={getTotalOrderPrice()}
-                    onPaymentStart={() => console.log('Start payment')}
-                    onPaymentSuccess={(data) => handlePaymentSuccess(data)}
-                    onPaymentError={(error) => console.log(error)}
-                    onPaymentCancel={(data) => console.log(data)}
-                />
+                <ButtonPass type="button" onClick={handleWithoutPay}>
+                    Pass simulate already pay
+                </ButtonPass>
             </PaymentContent>
         </PaymentContainer>
     );
