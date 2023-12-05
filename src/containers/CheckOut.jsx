@@ -50,6 +50,7 @@ const CheckOut = () => {
                 <Title>Order List</Title>
                 {cart.map((product) => (
                     <CheckOutItem
+                        item={product}
                         quantity={product.quantity}
                         title={product.title}
                         price={product.price}

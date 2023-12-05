@@ -67,6 +67,7 @@ const Payment = () => {
                 <h3>Resume Order:</h3>
                 {cart.map((product) => (
                     <CheckOutItem
+                        item={product}
                         quantity={product.quantity}
                         title={product.title}
                         price={product.price}

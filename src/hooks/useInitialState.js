@@ -9,9 +9,12 @@ const useInitialState = () => {
     const findItem = (item) => {
         return state.cart.filter((product) => item.id === product.id)[0];
     };
+    
+    const findItemIndex = (item) => {
+        return state.cart.findIndex((product) => item.id === product.id);
+    };
 
     const addToCart = (payload) => {
-        console.log(state);
         const item = findItem(payload);
         if (item && item.quantity < 10) {
             item.quantity = item.quantity + 1;
@@ -24,6 +27,12 @@ const useInitialState = () => {
             payload.totalPrice = payload.price;
             state.cart = [...state.cart, payload];
         }
+        setAll({ ...state });
+    };
+    
+    const deletefromCart = (payload) => {
+        const index = findItemIndex(payload);
+        state.cart.splice(index, 1);
         setAll({ ...state });
     };
     const getTotalOrderPrice = () => {
@@ -42,6 +51,7 @@ const useInitialState = () => {
     return {
         state,
         addToCart,
+        deletefromCart,
         getTotalOrderPrice,
         addBuyer,
         addNewOrder,

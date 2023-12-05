@@ -6,7 +6,7 @@ import { AppContext } from '@context/AppContext';
 import { useForm } from 'react-hook-form';
 
 const InformationContainer = styled.div`
-    grid-template-columns: 3fr 1fr;
+    grid-template-columns: 2fr 1fr;
     grid-gap: 2rem;
     grid-row-gap: 1.5em;
     display: grid;
@@ -101,13 +101,13 @@ const Information = () => {
         navigate('/checkout/payment');
     };
     return (
-        <InformationContainer onSubmit={handleSubmit(onSubmit)}>
+        <InformationContainer >
             <InformationContent>
                 <InformationHead>
                     <h2>Contact information</h2>
                 </InformationHead>
                 <FormContainer>
-                    <Form action="">
+                    <Form action="" onSubmit={handleSubmit(onSubmit)}>
                         <Input
                             {...register('name', { required: true })}
                             type="text"
@@ -190,6 +190,7 @@ const Information = () => {
                 <h3>Order:</h3>
                 {cart.map((product) => (
                     <CheckOutItem
+                        item={product}
                         quantity={product.quantity}
                         title={product.title}
                         price={product.price}

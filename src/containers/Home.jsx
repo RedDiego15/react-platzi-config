@@ -7,7 +7,7 @@ const Home = () => {
             <Helmet>
                 <title>Platzi Conf Mer - Products </title>
             </Helmet>
-            <Products></Products>;
+            <Products></Products>
         </>
     );
 };

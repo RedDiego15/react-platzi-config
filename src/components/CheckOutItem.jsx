@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { MdDeleteOutline } from 'react-icons/md';
+import { AppContext } from '@context/AppContext';
+
 
 const CheckOutItemContainer = styled.div`
     display: flex;
@@ -15,7 +17,7 @@ const CheckOutElement = styled.div`
     justify-content: space-between;
     align-items: center;
     width: 100%;
-
+    gap:.5rem;
     h4 {
         margin: 0;
     }
@@ -36,7 +38,10 @@ const stylesDeleteIcon = {
     width: '20px',
     height: '20px',
 };
-const CheckOutItem = ({ title, price, quantity }) => {
+const CheckOutItem = ({ item, title, price, quantity }) => {
+    const {
+        deletefromCart
+    } = useContext(AppContext);
     return (
         <CheckOutItemContainer>
             <CheckOutElementContainer>
@@ -50,7 +55,10 @@ const CheckOutItem = ({ title, price, quantity }) => {
                 </CheckOutElement>
             </CheckOutElementContainer>
 
-            <Button type="button">
+            <Button 
+            type="button"
+            onClick={() => deletefromCart(item)}
+            >
                 <MdDeleteOutline style={stylesDeleteIcon} />
             </Button>
         </CheckOutItemContainer>
